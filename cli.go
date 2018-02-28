@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -68,8 +69,14 @@ func (cli *CLI) Run() {
 	switch os.Args[1] {
 	case "addblock":
 		err := addBlockCmd.Parse(os.Args[2:])
+		if err != nil {
+			log.Println(err)
+		}
 	case "printchain":
 		err := printChainCmd.Parse(os.Args[2:])
+		if err != nil {
+			log.Println(err)
+		}
 	default:
 		cli.printUsage()
 		os.Exit(1)

@@ -1,6 +1,10 @@
 package main
 
-import "github.com/boltdb/bolt"
+import (
+	"log"
+
+	"github.com/boltdb/bolt"
+)
 
 type BlockchainIterator struct {
 	currentHash []byte
@@ -22,6 +26,9 @@ func (i *BlockchainIterator) Next() *Block {
 
 		return nil
 	})
+	if err != nil {
+		log.Println(err)
+	}
 
 	i.currentHash = block.PrevBlockHash
 
